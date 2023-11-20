@@ -33,7 +33,7 @@ $ pnpm dev
 
 ## Credits
 
-Based on [jasonujmaalvis/vue-movies](https://github.com/jasonujmaalvis/vue-movies) and [tastejs/nuxt-movies](https://github.com/tastejs/nuxt-movies).
+
 
 <img height="50px" src="./public/tmdb.svg">
 
