@@ -1,6 +1,6 @@
-# nuxt-movies
+# StillWatch
 
-A Nuxt.js Movies application using [The Movie Database (TMDb)](https://developers.themoviedb.org/3) API. Built using [Vue.js](https://github.com/vuejs/vue) and [Nuxt](https://github.com/nuxt/nuxt.js). Our version is built by the Nuxt and Chrome teams using the foundational work done by [jason.codes](https://movies.jason.codes/).
+A Nuxt.js Movies application using [The Movie Database (TMDb)](https://developers.themoviedb.org/3) API. Built using [Vue.js](https://github.com/vuejs/vue) and [Nuxt](https://github.com/nuxt/nuxt.js). 
 
 ## Quick setup
 
