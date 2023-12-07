@@ -1,18 +1,125 @@
+
 <template>
-  <footer p="y15 x15" flex="~ col gap4">
-    <div flex="~ row gap2" items-center my2>
-      <img src="/movies-sm.webp" width="25" height="25" alt="Logo">
-      <div text-xl>
-        StillWatch
-      </div>
-    </div>
-    <div flex="~ row gap2" items-center>
-      <p text-true-gray:90 text-sm>
-        Created by <a href="https:///web-avenir.fr" target="_blank" rel="noopener">Web Avenir</a>
-      </p>
-    </div>
-    <div flex gap4 items-center>
-      <LanguageSwitcher />
-    </div>
+  <footer :class="$style.footer">
+    <p>
+      <!-- TODO: should change the copyright name -->
+      &copy; {{ new Date().getFullYear() }} The Nuxt Movies authors. All rights reserved.&nbsp;
+      .
+    </p>
+    <p>
+      Designed and built by Bouna Diallo, data provided by&nbsp;
+      <a target="_blank" href="https://www.themoviedb.org/" rel="noopener">
+        TMDb
+      </a>
+      .
+    </p>
+
+    <!-- TODO: should change the owner's social links -->
+    <ul class="nolist">
+      <li>
+        <a
+          href="https://twitter.com/iambounadiallo"
+          target="_blank"
+          aria-label="Link to Twitter account"
+          rel="noopener">
+          <!-- TODO: fill color is hardcoded -->
+          <TwitterIcon />
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/Bouna2b02"
+          target="_blank"
+          aria-label="Link to GitHub account"
+          rel="noopener">
+          <GitHubIcon />
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.linkedin.com/in/bouna-diallo/"
+          target="_blank"
+          aria-label="Link to LinkedIn account"
+          rel="noopener">
+          <LinkedInIcon />
+        </a>
+      </li>
+      <li>
+        <a
+          href="mailto:bouna.diallo@epitech.eu"
+          aria-label="Link to Email"
+          rel="noopener">
+          <EmailIcon />
+        </a>
+      </li>
+    </ul>
   </footer>
 </template>
+
+<script>
+import TwitterIcon from '~/assets/images/twitter.svg?inline';
+import GitHubIcon from '~/assets/images/git-hub.svg?inline';
+import LinkedInIcon from '~/assets/images/linked-in.svg?inline';
+import EmailIcon from '~/assets/images/email.svg?inline';
+
+export default {
+  components: {
+    TwitterIcon,
+    GitHubIcon,
+    LinkedInIcon,
+    EmailIcon
+  }
+};
+</script>
+
+<style lang="scss" module>
+@import '~/assets/css/utilities/_variables.scss';
+
+.footer {
+  padding: 2rem 1.5rem 6.5rem;
+  color: $text-color-grey;
+
+  @media (min-width: $breakpoint-small) {
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+
+  @media (min-width: $breakpoint-large) {
+    padding: 2rem 5rem;
+  }
+
+  p {
+    margin: 0.3rem 0;
+    font-size: 1.4rem;
+  }
+
+  a {
+    color: $text-color-grey;
+    text-decoration: underline;
+  }
+
+  ul {
+    display: flex;
+    margin: 2rem 0 0 -0.5rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.4rem;
+      height: 4.4rem;
+
+      svg {
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:hover,
+      &:focus {
+        svg {
+          fill: #fff;
+        }
+      }
+    }
+  }
+}
+</style>

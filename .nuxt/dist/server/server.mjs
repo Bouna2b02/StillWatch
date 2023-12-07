@@ -1,1 +1,0 @@
-export { default } from "file:///Users/bounadiallo/Desktop/Epitech_Tek3/HUB/StillWatch/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"

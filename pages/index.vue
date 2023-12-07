@@ -1,37 +1,103 @@
-<script setup lang="ts">
-import type { MediaType } from '~/types'
-import { QUERY_LIST } from '~/constants/lists'
-
-const route = useRoute()
-const type = computed(() => route.params.type as MediaType || 'movie')
-
-const queries = computed(() => [
-  QUERY_LIST.movie[0],
-  QUERY_LIST.tv[0],
-])
-
-const AsyncWrapper = defineComponent({
-  name: 'AsyncWrapper',
-  async setup(_, ctx) {
-    const list = await listMedia(type.value, queries.value[0].query, 1)
-    const item = await getMedia(type.value, list.results[0].id)
-    return () => ctx.slots?.default?.({ item })
-  },
-})
-</script>
 
 <template>
-  <div>
-    <AsyncWrapper v-slot="{ item }">
-      <NuxtLink :to="`/${type}/${item.id}`">
-        <MediaHero :item="item" />
-      </NuxtLink>
-    </AsyncWrapper>
-    <CarouselAutoQuery
-      v-for="query of queries"
-      :key="query.type + query.query"
-      :query="query"
-    />
-    <TheFooter />
-  </div>
+  <main class="main">
+    <Hero :item="featured" />
+    <ListingCarousel
+      v-if="trendingMoviesShown"
+      :title="trendingMoviesTitle"
+      :view-all-url="trendingMoviesUrl"
+      :items="trendingMovies" />
+    <ListingCarousel
+      v-if="trendingTvShown"
+      :title="trendingTvTitle"
+      :view-all-url="trendingTvUrl"
+      :items="trendingTv" />
+  </main>
 </template>
+
+<script>
+import {
+  getTrending,
+  getMovie,
+  getTvShow,
+  getListItem
+} from '~/services/tmdbAPI';
+import Hero from '~/components/Hero';
+import ListingCarousel from '~/components/ListingCarousel';
+
+export default {
+  components: {
+    Hero,
+    ListingCarousel
+  },
+
+  async asyncData({ error }) {
+    try {
+      const trendingMovies = await getTrending('movie');
+      const trendingTv = await getTrending('tv');
+      let featured;
+
+      // feature a random item from movies or tv
+      const items = [
+        ...trendingMovies.results,
+        ...trendingTv.results
+      ];
+      const randomItem = items[Math.floor(Math.random() * items.length)];
+      const media = randomItem.title ? 'movie' : 'tv';
+
+      if (media === 'movie') {
+        featured = await getMovie(randomItem.id);
+      } else {
+        featured = await getTvShow(randomItem.id);
+      }
+
+      return {
+        trendingMovies,
+        trendingTv,
+        featured
+      };
+    } catch {
+      error({
+        statusCode: 504,
+        message: 'Data not available'
+      });
+    }
+  },
+
+  computed: {
+    trendingMoviesShown() {
+      return this.trendingMovies?.results.length;
+    },
+
+    trendingMoviesTitle() {
+      return getListItem('movie', 'trending').title;
+    },
+
+    trendingMoviesUrl() {
+      return {
+        name: 'movie-category-name',
+        params: {
+          name: 'trending'
+        }
+      };
+    },
+
+    trendingTvShown() {
+      return this.trendingTv?.results.length;
+    },
+
+    trendingTvTitle() {
+      return getListItem('tv', 'trending').title;
+    },
+
+    trendingTvUrl() {
+      return {
+        name: 'tv-category-name',
+        params: {
+          name: 'trending'
+        }
+      };
+    }
+  }
+};
+</script>

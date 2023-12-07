@@ -1,5 +1,14 @@
 {
-  "github": {
-    "silent": true
-  }
+  "builds": [
+    {
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/vercel-builder",
+      "config": {
+        "serverFiles": [
+          "api/swr.js",
+          "api/ipx.js"
+        ]
+      }
+    }
+  ]
 }
