@@ -3,7 +3,7 @@
   <footer :class="$style.footer">
     <p>
       <!-- TODO: should change the copyright name -->
-      &copy; {{ new Date().getFullYear() }} The Nuxt Movies authors. All rights reserved.&nbsp;
+      &copy; {{ new Date().getFullYear() }} Web Avenir authors. All rights reserved.&nbsp;
       .
     </p>
     <p>

@@ -95,26 +95,18 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Browse Movies, TV Shows and People' },
-      { hid: 'author', name: 'author', content: 'The Nuxt Movies authors' },
+      { hid: 'author', name: 'author', content: 'Web Avenir authors' },
       { hid: 'og:locale', property: 'og:locale', content: 'en_GB' },
       { hid: 'og:title', property: 'og:title', content: 'Movies App' },
       { hid: 'og:description', property: 'og:description', content: 'Browse Movies, TV Shows and People' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
-      { hid: 'og:url', property: 'og:url', content: 'https://movies.jason.codes/' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Movies' },
       { name: 'twitter:description', content: 'Browse Movies, TV Shows and People' },
       { name: 'twitter:site', content: '@iambounadiallo' },
       { name: 'twitter:creator', content: '@iambounadiallo' },
-      { name: 'twitter:image', content: 'https://movies.jason.codes/icon-medium.png' }
     ],
-    link: [
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico'
-      }
-    ]
+    
   },
 
   /*
